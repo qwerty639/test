@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qwerty", "qwerty\qwerty.csproj", "{4826EAC8-2D10-4364-B7F8-14E98090903D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4826EAC8-2D10-4364-B7F8-14E98090903D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4826EAC8-2D10-4364-B7F8-14E98090903D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4826EAC8-2D10-4364-B7F8-14E98090903D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4826EAC8-2D10-4364-B7F8-14E98090903D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {30B53CB1-1CEF-4061-BA51-C24834A6DB23}
+	EndGlobalSection
+EndGlobal

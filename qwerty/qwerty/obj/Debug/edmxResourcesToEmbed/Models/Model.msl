@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Academy_fitnessModelContainer" CdmEntityContainer="Academy_fitnessEntities">
+    <EntitySetMapping Name="COURSE">
+      <EntityTypeMapping TypeName="Academy_fitnessModel.COURSE">
+        <MappingFragment StoreEntitySet="COURSE">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COURSEREGISTRATION">
+      <EntityTypeMapping TypeName="Academy_fitnessModel.COURSEREGISTRATION">
+        <MappingFragment StoreEntitySet="COURSEREGISTRATION">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Trainerid" ColumnName="Trainerid" />
+          <ScalarProperty Name="Courseid" ColumnName="Courseid" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsDone" ColumnName="IsDone" />
+          <ScalarProperty Name="TotalPoint" ColumnName="TotalPoint" />
+          <ScalarProperty Name="CertificateImage" ColumnName="CertificateImage" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Academy_fitnessModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRAINER">
+      <EntityTypeMapping TypeName="Academy_fitnessModel.TRAINER">
+        <MappingFragment StoreEntitySet="TRAINER">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

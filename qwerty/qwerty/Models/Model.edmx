@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Academy_fitnessModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="COURSE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COURSEREGISTRATION">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Trainerid" Type="int" Nullable="false" />
+          <Property Name="Courseid" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="date" Nullable="false" />
+          <Property Name="IsDone" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TotalPoint" Type="int" Nullable="false" />
+          <Property Name="CertificateImage" Type="image" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TRAINER">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_COURSEREGISTRATION_COURSEID_COURSE_ID">
+          <End Role="COURSE" Type="Self.COURSE" Multiplicity="1" />
+          <End Role="COURSEREGISTRATION" Type="Self.COURSEREGISTRATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="COURSEREGISTRATION">
+              <PropertyRef Name="Courseid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COURSEREGISTRATION_TRAINERID_TRAINER_ID">
+          <End Role="TRAINER" Type="Self.TRAINER" Multiplicity="1" />
+          <End Role="COURSEREGISTRATION" Type="Self.COURSEREGISTRATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAINER">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="COURSEREGISTRATION">
+              <PropertyRef Name="Trainerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Academy_fitnessModelContainer">
+          <EntitySet Name="COURSE" EntityType="Self.COURSE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COURSEREGISTRATION" EntityType="Self.COURSEREGISTRATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRAINER" EntityType="Self.TRAINER" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_COURSEREGISTRATION_COURSEID_COURSE_ID" Association="Self.FK_COURSEREGISTRATION_COURSEID_COURSE_ID">
+            <End Role="COURSE" EntitySet="COURSE" />
+            <End Role="COURSEREGISTRATION" EntitySet="COURSEREGISTRATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COURSEREGISTRATION_TRAINERID_TRAINER_ID" Association="Self.FK_COURSEREGISTRATION_TRAINERID_TRAINER_ID">
+            <End Role="TRAINER" EntitySet="TRAINER" />
+            <End Role="COURSEREGISTRATION" EntitySet="COURSEREGISTRATION" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Academy_fitnessModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="COURSE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="COURSEREGISTRATION" Relationship="Self.FK_COURSEREGISTRATION_COURSEID_COURSE_ID" FromRole="COURSE" ToRole="COURSEREGISTRATION" />
+        </EntityType>
+        <EntityType Name="COURSEREGISTRATION">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Trainerid" Type="Int32" Nullable="false" />
+          <Property Name="Courseid" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsDone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TotalPoint" Type="Int32" Nullable="false" />
+          <Property Name="CertificateImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="COURSE" Relationship="Self.FK_COURSEREGISTRATION_COURSEID_COURSE_ID" FromRole="COURSEREGISTRATION" ToRole="COURSE" />
+          <NavigationProperty Name="TRAINER" Relationship="Self.FK_COURSEREGISTRATION_TRAINERID_TRAINER_ID" FromRole="COURSEREGISTRATION" ToRole="TRAINER" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TRAINER">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="COURSEREGISTRATION" Relationship="Self.FK_COURSEREGISTRATION_TRAINERID_TRAINER_ID" FromRole="TRAINER" ToRole="COURSEREGISTRATION" />
+        </EntityType>
+        <Association Name="FK_COURSEREGISTRATION_COURSEID_COURSE_ID">
+          <End Role="COURSE" Type="Self.COURSE" Multiplicity="1" />
+          <End Role="COURSEREGISTRATION" Type="Self.COURSEREGISTRATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="COURSEREGISTRATION">
+              <PropertyRef Name="Courseid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COURSEREGISTRATION_TRAINERID_TRAINER_ID">
+          <End Role="TRAINER" Type="Self.TRAINER" Multiplicity="1" />
+          <End Role="COURSEREGISTRATION" Type="Self.COURSEREGISTRATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAINER">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="COURSEREGISTRATION">
+              <PropertyRef Name="Trainerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Academy_fitnessEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="COURSE" EntityType="Self.COURSE" />
+          <EntitySet Name="COURSEREGISTRATION" EntityType="Self.COURSEREGISTRATION" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TRAINER" EntityType="Self.TRAINER" />
+          <AssociationSet Name="FK_COURSEREGISTRATION_COURSEID_COURSE_ID" Association="Self.FK_COURSEREGISTRATION_COURSEID_COURSE_ID">
+            <End Role="COURSE" EntitySet="COURSE" />
+            <End Role="COURSEREGISTRATION" EntitySet="COURSEREGISTRATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COURSEREGISTRATION_TRAINERID_TRAINER_ID" Association="Self.FK_COURSEREGISTRATION_TRAINERID_TRAINER_ID">
+            <End Role="TRAINER" EntitySet="TRAINER" />
+            <End Role="COURSEREGISTRATION" EntitySet="COURSEREGISTRATION" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Academy_fitnessModelContainer" CdmEntityContainer="Academy_fitnessEntities">
+          <EntitySetMapping Name="COURSE">
+            <EntityTypeMapping TypeName="Academy_fitnessModel.COURSE">
+              <MappingFragment StoreEntitySet="COURSE">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COURSEREGISTRATION">
+            <EntityTypeMapping TypeName="Academy_fitnessModel.COURSEREGISTRATION">
+              <MappingFragment StoreEntitySet="COURSEREGISTRATION">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Trainerid" ColumnName="Trainerid" />
+                <ScalarProperty Name="Courseid" ColumnName="Courseid" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDone" ColumnName="IsDone" />
+                <ScalarProperty Name="TotalPoint" ColumnName="TotalPoint" />
+                <ScalarProperty Name="CertificateImage" ColumnName="CertificateImage" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Academy_fitnessModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRAINER">
+            <EntityTypeMapping TypeName="Academy_fitnessModel.TRAINER">
+              <MappingFragment StoreEntitySet="TRAINER">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
